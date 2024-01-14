@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shapes</title>
+  <style>
+    .shape {
+      border: 1px solid #000;
+      margin: 10px;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="hexagon" class="shape" width="300" height="300"></canvas>
+  <canvas id="rectangle" class="shape" width="300" height="300"></canvas>
+  <canvas id="square" class="shape" width="300" height="300"></canvas>
+  <canvas id="circle" class="shape" width="300" height="300"></canvas>
+  <canvas id="heart" class="shape" width="300" height="300"></canvas>
+  <canvas id="rhombus" class="shape" width="300" height="300"></canvas>
+  <canvas id="star" class="shape" width="300" height="300"></canvas>
+  <canvas id="semicircle" class="shape" width="300" height="300"></canvas>
+  <canvas id="pentagon" class="shape" width="300" height="300"></canvas>
+  <canvas id="trapezoid" class="shape" width="300" height="300"></canvas>
+ 
+
+  <script>
+    // Function to draw a hexagon on the canvas
+    function drawHexagon(context, x, y, sideLength) {
+      context.beginPath();
+      context.moveTo(x + sideLength * Math.cos(0), y + sideLength * Math.sin(0));
+
+      for (let i = 1; i <= 6; i++) {
+        context.lineTo(x + sideLength * Math.cos(i * 2 * Math.PI / 6), y + sideLength * Math.sin(i * 2 * Math.PI / 6));
+      }
+
+      context.fillStyle = "#00F"; // Set the fill color to blue (you can change this)
+      context.fill();
+      context.closePath();
+    }
+
+    // Function to draw a rectangle on the canvas
+    function drawRectangle(context, x, y, width, height) {
+      context.fillStyle = "#F00"; // Set the fill color to red (you can change this)
+      context.fillRect(x, y, width, height);
+    }
+
+    // Function to draw a square on the canvas
+    function drawSquare(context, x, y, sideLength) {
+      context.fillStyle = "#0F0"; // Set the fill color to green (you can change this)
+      context.fillRect(x, y, sideLength, sideLength);
+    }
+
+    // Function to draw a circle on the canvas
+    function drawCircle(context, x, y, radius) {
+      context.beginPath();
+      context.arc(x, y, radius, 0, 2 * Math.PI);
+      context.fillStyle = "#FF0"; // Set the fill color to yellow (you can change this)
+      context.fill();
+      context.closePath();
+    }
+
+    // Function to draw a heart on the canvas
+    function drawHeart(context, x, y, size) {
+      context.beginPath();
+      context.moveTo(x, y - size / 2);
+      context.arc(x - size / 4, y - size / 2, size / 4, Math.PI, 0, false);
+      context.lineTo(x, y + size / 2);
+      context.lineTo(x + size / 4, y - size / 2);
+      context.arc(x + size / 4, y - size / 2, size / 4, Math.PI, 0, false);
+      context.fillStyle = "#F00"; // Set the fill color to red (you can change this)
+      context.fill();
+      context.closePath();
+    }
+
+    // Function to draw a rhombus on the canvas
+    function drawRhombus(context, x, y, diagonal1, diagonal2) {
+      context.beginPath();
+      context.moveTo(x, y - diagonal1 / 2);
+      context.lineTo(x - diagonal2 / 2, y);
+      context.lineTo(x, y + diagonal1 / 2);
+      context.lineTo(x + diagonal2 / 2, y);
+      context.fillStyle = "#FFA500"; // Set the fill color to orange
+      context.fill();
+      context.closePath();
+    }
+
+    // Function to draw a star on the canvas
+    function drawStar(context, x, y, outerRadius, innerRadius, points) {
+      context.beginPath();
+      for (let i = 0; i < 2 * points; i++) {
+        const radius = i % 2 === 0 ? outerRadius : innerRadius;
+        const angle = (i * Math.PI) / points;
+        context.lineTo(x + radius * Math.cos(angle), y + radius * Math.sin(angle));
+      }
+      context.fillStyle = "#8B4513"; // Set the fill color to brown
+      context.fill();
+      context.closePath();
+    }
+
+    // Function to draw a semicircle on the canvas
+    function drawSemicircle(context, x, y, radius) {
+      context.beginPath();
+      context.arc(x, y, radius, Math.PI, 2 * Math.PI);
+      context.fillStyle = "#FFC0CB"; // Set the fill color to pink
+      context.fill();
+      context.closePath();
+    }
+
+    // Function to draw a pentagon on the canvas
+    function drawPentagon(context, x, y, sideLength) {
+      context.beginPath();
+      context.moveTo(x + sideLength * Math.cos(0), y + sideLength * Math.sin(0));
+
+      for (let i = 1; i <= 5; i++) {
+        context.lineTo(x + sideLength * Math.cos(i * 2 * Math.PI / 5), y + sideLength * Math.sin(i * 2 * Math.PI / 5));
+      }
+
+      context.fillStyle = "#800080"; // Set the fill color to purple
+      context.fill();
+      context.closePath();
+    }
+
+    // Function to draw a trapezoid on the canvas
+    function drawTrapezoid(context, x, y, topWidth, bottomWidth, height) {
+      context.beginPath();
+      context.moveTo(x - topWidth / 2, y - height / 2);
+      context.lineTo(x + topWidth / 2, y - height / 2);
+      context.lineTo(x + bottomWidth / 2, y + height / 2);
+      context.lineTo(x - bottomWidth / 2, y + height / 2);
+      context.fillStyle = "#333"; // Set the fill color to purple
+      context.fill();
+      context.closePath();
+    }
+
+    // Function to draw a triangle on the canvas
+    function drawTriangle(context, x1, y1, x2, y2, x3, y3) {
+      context.beginPath();
+      context.moveTo(x1, y1);
+      context.lineTo(x2, y2);
+      context.lineTo(x3, y3);
+      context.fillStyle = "lightgreen"; // Set the fill color to yellow
+      context.fill();
+      context.closePath();
+    }
+
+    // Function to draw an oval (ellipse) on the canvas
+    function drawOval(context, x, y, radiusX, radiusY) {
+      context.beginPath();
+      context.ellipse(x, y, radiusX, radiusY, 0, 0, 2 * Math.PI);
+      context.fillStyle = "#FFA07A"; // Set the fill color to light salmon
+      context.fill();
+      context.closePath();
+    }
+
+    // Get the canvas and its context for hexagon
+    const hexagonCanvas = document.getElementById("hexagon");
+    const hexagonContext = hexagonCanvas.getContext("2d");
+
+    // Set the position and size of the hexagon
+    const hexagonX = hexagonCanvas.width / 4;
+    const hexagonY = hexagonCanvas.height / 2;
+    const hexagonSideLength = 50;
+
+    // Draw the hexagon
+    drawHexagon(hexagonContext, hexagonX, hexagonY, hexagonSideLength);
+
+    // Get the canvas and its context for rectangle
+    const rectangleCanvas = document.getElementById("rectangle");
+    const rectangleContext = rectangleCanvas.getContext("2d");
+
+    // Set the position and size of the rectangle
+    const rectangleX = rectangleCanvas.width / 7;
+    const rectangleY = rectangleCanvas.height / 4;
+    const rectangleWidth = 100;
+    const rectangleHeight = 200;
+
+    // Draw the rectangle
+    drawRectangle(rectangleContext, rectangleX, rectangleY, rectangleWidth, rectangleHeight);
+
+    // Get the canvas and its context for square
+    const squareCanvas = document.getElementById("square");
+    const squareContext = squareCanvas.getContext("2d");
+
+    // Set the position and size of the square
+    const squareX = squareCanvas.width / 1.5;
+    const squareY = squareCanvas.height / 1.5;
+    const squareSideLength = 60;
+
+    // Draw the square
+    drawSquare(squareContext, squareX, squareY, squareSideLength);
+
+    // Get the canvas and its context for circle
+    const circleCanvas = document.getElementById("circle");
+    const circleContext = circleCanvas.getContext("2d");
+
+    // Set the position and size of the circle
+    const circleX = circleCanvas.width / 1.5;
+    const circleY = circleCanvas.height / 4;
+    const circleRadius = 30;
+
+    // Draw the circle
+    drawCircle(circleContext, circleX, circleY, circleRadius);
+
+    // Get the canvas and its context for heart
+    const heartCanvas = document.getElementById("heart");
+    const heartContext = heartCanvas.getContext("2d");
+
+    // Set the position and size of the heart
+    const heartX = heartCanvas.width / 4;
+    const heartY = heartCanvas.height / 1.5;
+    const heartSize = 60;
+
+    // Draw the heart
+    drawHeart(heartContext, heartX, heartY, heartSize);
+
+    // Get the canvas and its context for rhombus
+    const rhombusCanvas = document.getElementById("rhombus");
+    const rhombusContext = rhombusCanvas.getContext("2d");
+
+    // Set the position and size of the rhombus
+    const rhombusX = rhombusCanvas.width / 2;
+    const rhombusY = rhombusCanvas.height / 1.5;
+    const rhombusDiagonal1 = 60;
+    const rhombusDiagonal2 = 80;
+
+    // Draw the rhombus
+    drawRhombus(rhombusContext, rhombusX, rhombusY, rhombusDiagonal1, rhombusDiagonal2);
+
+    // Get the canvas and its context for star
+    const starCanvas = document.getElementById("star");
+    const starContext = starCanvas.getContext("2d");
+
+    // Set the position and size of the star
+    const starX = starCanvas.width / 4;
+    const starY = starCanvas.height / 4;
+    const outerRadius = 50;
+    const innerRadius = 20;
+    const starPoints = 5;
+
+    // Draw the star
+    drawStar(starContext, starX, starY, outerRadius, innerRadius, starPoints);
+
+    // Get the canvas and its context for semicircle
+    const semicircleCanvas = document.getElementById("semicircle");
+    const semicircleContext = semicircleCanvas.getContext("2d");
+
+    // Set the position and size of the semicircle
+    const semicircleX = semicircleCanvas.width / 1.5;
+    const semicircleY = semicircleCanvas.height / 1.5;
+    const semicircleRadius = 40;
+
+    // Draw the semicircle
+    drawSemicircle(semicircleContext, semicircleX, semicircleY, semicircleRadius);
+
+    // Get the canvas and its context for pentagon
+    const pentagonCanvas = document.getElementById("pentagon");
+    const pentagonContext = pentagonCanvas.getContext("2d");
+
+    // Set the position and size of the pentagon
+    const pentagonX = pentagonCanvas.width / 8;
+    const pentagonY = pentagonCanvas.height / 8;
+    const pentagonSideLength = 40;
+
+    // Draw the pentagon
+    drawPentagon(pentagonContext, pentagonX, pentagonY, pentagonSideLength);
+
+    // Get the canvas and its context for trapezoid
+    const trapezoidCanvas = document.getElementById("trapezoid");
+    const trapezoidContext = trapezoidCanvas.getContext("2d");
+
+    // Set the position and size of the trapezoid
+    const trapezoidX = trapezoidCanvas.width / 1.5;
+    const trapezoidY = trapezoidCanvas.height / 1.8;
+    const trapezoidTopWidth = 80;
+    const trapezoidBottomWidth = 120;
+    const trapezoidHeight = 60;
+
+    // Draw the trapezoid
+    drawTrapezoid(trapezoidContext, trapezoidX, trapezoidY, trapezoidTopWidth, trapezoidBottomWidth, trapezoidHeight);
+
+    // Get the canvas and its context for triangle
+    const triangleCanvas = document.getElementById("triangle");
+    const triangleContext = triangleCanvas.getContext("2d");
+
+    // Set the position and vertices of the triangle
+    const triangleX1 = triangleCanvas.width / 1.8;
+    const triangleY1 = triangleCanvas.height / 2;
+    const triangleX2 = triangleCanvas.width / 1.5;
+    const triangleY2 = triangleCanvas.height / 1.5;
+    const triangleX3 = triangleCanvas.width / 1.2;
+    const triangleY3 = triangleCanvas.height / 1.8;
+
+
+    
+  </script>
+</body>
+</html>
